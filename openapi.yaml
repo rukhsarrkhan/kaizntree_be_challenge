@@ -219,6 +219,67 @@ paths:
         '404':
           description: No tag found with the specified ID.
 
+  /api/v1/auth/register/:
+    post:
+      summary: Register a new user
+      description: Register a new user with an email and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                password2:
+                  type: string
+                  format: password
+      responses:
+        '201':
+          description: User registered successfully.
+        '400':
+          description: Invalid data provided.
+
+  /api/v1/auth/login/:
+    post:
+      summary: Login a user
+      description: Login a user using their email and password.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Login successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    format: email
+                  access_token:
+                    type: string
+                  refresh_token:
+                    type: string
+        '401':
+          description: Invalid credentials or email not verified.
+
 components:
   schemas:
     Item:
@@ -256,3 +317,53 @@ components:
           type: integer
         name:
           type: string
+        
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: Unique email address for the user.
+        is_superuser:
+          type: boolean
+          default: false
+          description: Designates that this user has all permissions without explicitly assigning them.
+        is_staff:
+          type: boolean
+          default: false
+          description: Designates whether the user can log into the admin site.
+        is_active:
+          type: boolean
+          default: true
+          description: Designates whether this user account should be considered active.
+        date_joined:
+          type: string
+          format: date-time
+          description: The date and time when the account was created.
+        last_login:
+          type: string
+          format: date-time
+          description: The date and time of the last login.
+        tokens:
+          type: object
+          properties:
+            refresh:
+              type: string
+              description: A refresh token for generating new access tokens.
+            access:
+              type: string
+              description: An access token for authentication.
+      required:
+        - email
+        - is_active
+      example:
+        email: user@example.com
+        is_superuser: false
+        is_staff: false
+        is_active: true
+        date_joined: '2024-02-11T17:29:27Z'
+        last_login: '2024-02-12T12:34:56Z'
+        tokens:
+          refresh: "example_refresh_token"
+          access: "example_access_token"

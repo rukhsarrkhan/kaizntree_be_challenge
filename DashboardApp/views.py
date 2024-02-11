@@ -1,16 +1,15 @@
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
+from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
-from django.http.response import JsonResponse, HttpResponse
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
 
 from DashboardApp.models import Category, Tag, Item
 from DashboardApp.serializers import CategorySerializer, TagSerializer, ItemSerializer
-
-from django.core.files.storage import default_storage
 from django.shortcuts import get_object_or_404
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def dashboardApi(request,id=None):
     if request.method=='GET':
         query_set = Item.objects.all()
@@ -64,6 +63,7 @@ def dashboardApi(request,id=None):
             return JsonResponse({'error': str(e)}, status=400)
 
 @api_view(['GET', 'POST', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def categoryApi(request,id=0):
     if request.method=='GET':
         if id: 
@@ -91,6 +91,7 @@ def categoryApi(request,id=0):
             return JsonResponse({'error': str(e)}, status=400)
 
 @api_view(['GET', 'POST', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def tagApi(request,id=0):
     if request.method=='GET':
         if id: 
