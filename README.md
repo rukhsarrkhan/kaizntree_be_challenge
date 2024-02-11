@@ -47,6 +47,12 @@ To run the application, navigate to the project directory in your terminal and e
 
 python manage.py runserver
 
+Migrations
+
+python manage.py makemigrations DashboardApp
+
+python manage.py migrate DashboardApp
+
 This will start the Django development server, and you should be able to access the application at http://127.0.0.1:8000/.
 
 API Documentation
