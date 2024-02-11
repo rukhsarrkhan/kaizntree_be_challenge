@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.generics import GenericAPIView
-from AccountApp.serializers import UserRegistrationSerializer, UserLoginSerializer
+from AccountApp.serializers import UserRegistrationSerializer, UserLoginSerializer, PasswordResestRequestViewSerializer
 
 from django.http.response import JsonResponse
 
@@ -21,3 +21,10 @@ class LoginUserView(GenericAPIView):
         login_serializer = UserLoginSerializer(data=request.data, context={'request': request})
         login_serializer.is_valid(raise_exception=True)
         return JsonResponse(login_serializer.data, status=200)
+
+class PasswordResestRequestView(GenericAPIView):
+
+    def post(self, request):
+        reset_serializer = PasswordResestRequestViewSerializer(data=request.data, context={'request': request})
+        reset_serializer.is_valid(raise_exception=True)
+        return JsonResponse("A link has been sent to you to reset your password", status=200)

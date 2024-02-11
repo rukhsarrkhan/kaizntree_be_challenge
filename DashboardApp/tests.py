@@ -36,13 +36,27 @@ class ItemAPITests(APITestCase):
         response = self.client.get(reverse('dashboardApi'), format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response_data), 1)   
+        self.assertEqual(len(response_data['results']), 1)   
     
     def test_get_item_by_id(self):
         response = self.client.get(reverse('dashboardApi-detail', kwargs={'id': self.item.id}), format='json')
         response_data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response_data['name'], self.item.name)
+    
+    def test_item_list_pagination(self):
+        # Request the first page
+        response = self.client.get(reverse('dashboardApi'), {'page': 1})
+        response_data = response.json()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        # Check that the response contains pagination metadata
+        self.assertIn('count', response_data)
+        self.assertIn('next', response_data)
+        self.assertIn('previous', response_data)
+        self.assertIn('results', response_data)
+        
+        self.assertEqual(len(response.data['results']), 1)
 
     def test_create_item(self):
         data = {
@@ -144,4 +158,3 @@ class TagAPITests(APITestCase):
         response = self.client.delete(reverse('tagApi-detail', kwargs={'id': self.tag.id}))
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Tag.objects.count(), 0)  # Tag should be deleted
-

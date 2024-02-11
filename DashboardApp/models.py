@@ -13,3 +13,6 @@ class Item(models.Model):
     tags = models.ManyToManyField(Tag, related_name='items')
     stock_status = models.FloatField() 
     available_stock = models.FloatField()
+
+    class Meta:
+        ordering = ['id'] 

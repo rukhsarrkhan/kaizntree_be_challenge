@@ -3,6 +3,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
 
 from DashboardApp.models import Category, Tag, Item
 from DashboardApp.serializers import CategorySerializer, TagSerializer, ItemSerializer
@@ -29,13 +30,25 @@ def dashboardApi(request,id=None):
             tag_ids = tags.split(',')
             query_set = query_set.filter(tags__id__in=tag_ids).distinct()
 
-        if id: 
+        # if id: 
+        #     item = get_object_or_404(query_set, id=id)
+        #     items_serializer = ItemSerializer(item)
+        # else :
+        #     items_serializer=ItemSerializer(query_set,many=True)
+
+        # return JsonResponse(items_serializer.data,safe=False, status=200)
+
+        if id:
             item = get_object_or_404(query_set, id=id)
             items_serializer = ItemSerializer(item)
-        else :
-            items_serializer=ItemSerializer(query_set,many=True)
+            return JsonResponse(items_serializer.data,safe=False, status=200)
 
-        return JsonResponse(items_serializer.data,safe=False, status=200)
+        # Pagination
+        paginator = PageNumberPagination()
+        paginated_qs = paginator.paginate_queryset(query_set, request)
+        items_serializer = ItemSerializer(paginated_qs, many=True)
+        return paginator.get_paginated_response(items_serializer.data)
+
 
     elif request.method=='POST':
         item_data=JSONParser().parse(request)

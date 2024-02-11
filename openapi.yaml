@@ -29,15 +29,37 @@ paths:
             type: string
           required: false
           description: Filter items by comma-separated tag IDs.
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+          description: Specify the page of results to retrieve.
       responses:
         '200':
           description: Successfully retrieved.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Item'
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    description: Total number of items across all pages.
+                  next:
+                    type: string
+                    format: uri
+                    nullable: true
+                    description: URI to the next page of items, if available.
+                  previous:
+                    type: string
+                    format: uri
+                    nullable: true
+                    description: URI to the previous page of items, if available.
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Item'
     post:
       summary: Create a new item
       description: Create a new item.
