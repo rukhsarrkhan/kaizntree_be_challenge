@@ -32,10 +32,10 @@ class UserAccountTests(APITestCase):
         Ensure we can login with a user account.
         """
         # First, create a user
-        user = User.objects.create_user(email='rukhsarkhan4198@gmail.com', password='loginpassword')
+        user = User.objects.create_user(email='testuser@gmail.com', password='loginpassword')
         url = reverse('login')
         data = {
-            'email': 'rukhsarkhan4198@gmail.com',
+            'email': 'testuser@gmail.com',
             'password': 'loginpassword',
         }
         response = self.client.post(url, data, format='json')

@@ -12,7 +12,7 @@ class ItemAPITests(APITestCase):
 
     def setUp(self):
         # Create a user
-        self.user = User.objects.create_user(email='rukhsarkhan4198@gmail.com', password='loginpassword')
+        self.user = User.objects.create_user(email='testuser@gmail.com', password='loginpassword')
         # Create a category
         self.category = Category.objects.create(name='Electronics')
         # Create tags
@@ -83,7 +83,7 @@ class CategoryAPITests(APITestCase):
 
     def setUp(self):
         # Authentication setup
-        self.user = User.objects.create_user(email='rukhsarkhan4198@gmail.com', password='loginpassword')
+        self.user = User.objects.create_user(email='testuser@gmail.com', password='loginpassword')
         refresh = RefreshToken.for_user(self.user)
         self.token = str(refresh.access_token)
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.token)
@@ -116,7 +116,7 @@ class TagAPITests(APITestCase):
 
     def setUp(self):
         # Authentication setup
-        self.user = User.objects.create_user(email='rukhsarkhan4198@gmail.com', password='loginpassword')
+        self.user = User.objects.create_user(email='testuser@gmail.com', password='loginpassword')
         refresh = RefreshToken.for_user(self.user)
         self.token = str(refresh.access_token)
         self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.token)
