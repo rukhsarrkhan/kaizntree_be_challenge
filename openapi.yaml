@@ -1,0 +1,258 @@
+openapi: 3.0.0
+info:
+  title: Dashboard API
+  version: "1.0"
+  description: API documentation for DashboardApp.
+paths:
+  /items/:
+    get:
+      summary: Retrieve a list of all items
+      description: Retrieve a list of all items, with optional filtering by stock status, category, and tags.
+      parameters:
+        - in: query
+          name: stock_status
+          schema:
+            type: string
+          required: false
+          description: Filter items by stock status.
+        - in: query
+          name: category
+          schema:
+            type: integer
+          required: false
+          description: Filter items by category ID.
+        - in: query
+          name: tags
+          schema:
+            type: string
+          required: false
+          description: Filter items by comma-separated tag IDs.
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+    post:
+      summary: Create a new item
+      description: Create a new item.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+      responses:
+        '201':
+          description: Successfully created.
+        '400':
+          description: Invalid data provided.
+  
+  /items/{id}/:
+    get:
+      summary: Retrieve a specific item by ID
+      description: Retrieve a specific item by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved.
+        '404':
+          description: No item found with the specified ID.
+    put:
+      summary: Update an existing item by ID
+      description: Update an existing item by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Item'
+      responses:
+        '200':
+          description: Successfully updated.
+        '400':
+          description: Invalid data provided.
+        '404':
+          description: No item found with the specified ID.
+    delete:
+      summary: Delete an item by ID
+      description: Delete an item by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted.
+        '404':
+          description: No item found with the specified ID.
+  
+  /categories/:
+    get:
+      summary: Retrieve a list of all categories
+      description: Retrieve a list of all categories.
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+    post:
+      summary: Create a new category
+      description: Create a new category.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '201':
+          description: Successfully created.
+        '400':
+          description: Invalid data provided.
+  
+  /categories/{id}/:
+    get:
+      summary: Retrieve a specific category by ID
+      description: Retrieve a specific category by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved.
+        '404':
+          description: No category found with the specified ID.
+    delete:
+      summary: Delete a category by ID
+      description: Delete a category by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted.
+        '404':
+          description: No category found with the specified ID.
+
+  /tags/:
+    get:
+      summary: Retrieve a list of all tags
+      description: Retrieve a list of all tags.
+      responses:
+        '200':
+          description: Successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+    post:
+      summary: Create a new tag
+      description: Create a new tag.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '201':
+          description: Successfully created.
+        '400':
+          description: Invalid data provided.
+
+  /tags/{id}/:
+    get:
+      summary: Retrieve a specific tag by ID
+      description: Retrieve a specific tag by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved.
+        '404':
+          description: No tag found with the specified ID.
+    delete:
+      summary: Delete a tag by ID
+      description: Delete a tag by ID.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successfully deleted.
+        '404':
+          description: No tag found with the specified ID.
+
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: integer
+        sku:
+          type: string
+        name:
+          type: string
+        stock_status:
+          type: string
+        available_stock:
+          type: number
+        category:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: integer
+
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string

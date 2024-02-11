@@ -13,12 +13,29 @@ from django.shortcuts import get_object_or_404
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
 def dashboardApi(request,id=None):
     if request.method=='GET':
+        query_set = Item.objects.all()
+
+        # Filter by stock status if provided
+        stock_status = request.query_params.get('stock_status')
+        if stock_status:
+            query_set = query_set.filter(stock_status=stock_status)
+        
+        # Filter by category if provided
+        category = request.query_params.get('category')
+        if category:
+            query_set = query_set.filter(category=category)
+
+        tags = request.query_params.get('tag')
+        if tags:
+            tag_ids = tags.split(',')
+            query_set = query_set.filter(tags__id__in=tag_ids).distinct()
+
         if id: 
-            item = get_object_or_404(Item, id=id)
+            item = get_object_or_404(query_set, id=id)
             items_serializer = ItemSerializer(item)
         else :
-            items = Item.objects.all()
-            items_serializer=ItemSerializer(items,many=True)
+            items_serializer=ItemSerializer(query_set,many=True)
+
         return JsonResponse(items_serializer.data,safe=False, status=200)
 
     elif request.method=='POST':
