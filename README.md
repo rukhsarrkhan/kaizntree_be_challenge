@@ -106,6 +106,11 @@ This will start the Django development server, and you should be able to access 
 The API endpoints are documented using Swagger. You can access the interactive endpoints documentation for the project at: [Swagger Editor Website](https://editor.swagger.io/)
 You will have to copy the entire contents of openapi.yaml file from the project directory and paste it in Swagger editor to get interactive API documentation
 
+-----
+
+Note: All apis must end with a slash "/"
+Django can't redirect to the slash URL while maintaining data.
+
 12. **Frontend Mockups**
     
 The frontend design mockups are available on Figma at the following link: [Figma Design Link](https://www.figma.com/file/fjzPIi67Jk7WgW3gjeA0Tk/Kaizntree-Full-Stack-Interview-UI-Template?type=whiteboard&node-id=0-1&t=T12L5wu2aGemt1Lk-0)
