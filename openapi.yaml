@@ -442,7 +442,7 @@ components:
         name:
           type: string
         stock_status:
-          type: string
+          type: number
         available_stock:
           type: number
         category:
