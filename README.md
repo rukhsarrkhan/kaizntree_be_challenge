@@ -2,12 +2,7 @@
 
 ## Description
 
-This project is a web application designed to manage [briefly describe the core functionality of your app, e.g., "inventory", "customer relations", "content" etc.]. It provides an interface for users to [describe what users can do with your application]. The project utilizes Django REST Framework for the backend with a PostgreSQL database, and includes Swagger for API documentation and Figma for frontend design mockups.
-
-## Features : TBD
-
-- Inventory Management
-
+This project is a web application designed to manage inventory items. The project utilizes Django REST Framework for the backend with a PostgreSQL database, and includes Swagger for API documentation and Figma for frontend design mockups. The project is done as part of kaizntree backend challenge.
   
 ## Installation
 
@@ -106,14 +101,36 @@ To run the application, navigate to the project directory in your terminal and e
    ```
 This will start the Django development server, and you should be able to access the application at http://127.0.0.1:8000/.
 
-API Documentation
+11. **API Documentation**
 
 The API endpoints are documented using Swagger. You can access the interactive endpoints documentation for the project at: [Swagger Editor Website](https://editor.swagger.io/)
 You will have to copy the entire contents of openapi.yaml file from the project directory and paste it in Swagger editor to get interactive API documentation
 
-The frontend design mockups are available on Figma at the following link:
+12. **Frontend Mockups**
+    
+The frontend design mockups are available on Figma at the following link: [Figma Design Link](https://www.figma.com/file/fjzPIi67Jk7WgW3gjeA0Tk/Kaizntree-Full-Stack-Interview-UI-Template?type=whiteboard&node-id=0-1&t=T12L5wu2aGemt1Lk-0)
 
-[Figma Design Link](https://www.figma.com/file/fjzPIi67Jk7WgW3gjeA0Tk/Kaizntree-Full-Stack-Interview-UI-Template?type=whiteboard&node-id=0-1&t=T12L5wu2aGemt1Lk-0)
+13. **Unit testind the Application**:
+To test the API endpoints of the application use below commands
 
-Why PostgreSQL?
-PostgreSQL was chosen as the database for this project due to its robustness, scalability, and strong community support. It provides advanced features such as full ACID compliance, reliable transactional integrity, and support for complex queries and data types, which are essential for [explain any specific needs of your project].
+   ```
+   python manage.py test DashboardApp
+  python manage.py test AccountApp
+   ```
+
+14. **Why PostgreSQL?**
+I chose PostgreSQL for its ability to handle complex data relationships and queries, crucial for the dashboard's interconnected data. Its ACID compliance ensures data integrity, while scalability and community support make it ideal for both development and production.
+
+15. **Why React Frontend Framework?**
+I chose React for its component-based architecture, enabling reusable UI elements and scalability. Its virtual DOM optimizes performance, and the extensive ecosystem supports rapid development. The large community provides ample resources and support.
+   
+16. **Why Github Pages to deploy Frontend?**
+I opted for GitHub Pages for its simplicity and cost-effectiveness in hosting static sites, perfect for a React app. It offers seamless integration with GitHub for easy updates and leverages GitHub's infrastructure for reliability and quick setup.
+
+17. **Why JWT for Authentication?**
+JWT tokens are valued for its compact, self-contained format that speeds up authentication and reduces database queries. Its stateless nature aids in scaling, and digital signatures offer security, making it a top choice for secure and efficient authentication.
+
+18. **Frontend URL?**
+    
+[Frontend Website](https://rukhsarrkhan.github.io/kaizntree_be_challenge_fe/)
+
