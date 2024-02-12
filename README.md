@@ -108,9 +108,7 @@ You will have to copy the entire contents of openapi.yaml file from the project 
 
 12. **Frontend Mockups**
     
-The frontend design mockups are available on Figma at the following link:
-
-[Figma Design Link](https://www.figma.com/file/fjzPIi67Jk7WgW3gjeA0Tk/Kaizntree-Full-Stack-Interview-UI-Template?type=whiteboard&node-id=0-1&t=T12L5wu2aGemt1Lk-0)
+The frontend design mockups are available on Figma at the following link: [Figma Design Link](https://www.figma.com/file/fjzPIi67Jk7WgW3gjeA0Tk/Kaizntree-Full-Stack-Interview-UI-Template?type=whiteboard&node-id=0-1&t=T12L5wu2aGemt1Lk-0)
 
 13. **Unit testind the Application**:
 To test the API endpoints of the application use below commands
@@ -134,5 +132,5 @@ JWT tokens are valued for its compact, self-contained format that speeds up auth
 
 18. **Frontend URL?**
     
-[Frontend Website]([https://editor.swagger.io/](https://rukhsarrkhan.github.io/kaizntree_be_challenge_fe/)
+[Frontend Website](https://rukhsarrkhan.github.io/kaizntree_be_challenge_fe/)
 
