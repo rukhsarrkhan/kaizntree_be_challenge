@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a web application designed to manage [briefly describe the core functionality of your app, e.g., "inventory", "customer relations", "content" etc.]. It provides an interface for users to [describe what users can do with your application]. The project utilizes Django REST Framework for the backend with a PostgreSQL database, and includes Swagger for API documentation and Figma for frontend design mockups.
+This project is a web application designed to manage inventory items. The project utilizes Django REST Framework for the backend with a PostgreSQL database, and includes Swagger for API documentation and Figma for frontend design mockups. The project is done as part of kaizntree backend challenge.
 
 ## Features : TBD
 
@@ -115,5 +115,26 @@ The frontend design mockups are available on Figma at the following link:
 
 [Figma Design Link](https://www.figma.com/file/fjzPIi67Jk7WgW3gjeA0Tk/Kaizntree-Full-Stack-Interview-UI-Template?type=whiteboard&node-id=0-1&t=T12L5wu2aGemt1Lk-0)
 
-Why PostgreSQL?
-PostgreSQL was chosen as the database for this project due to its robustness, scalability, and strong community support. It provides advanced features such as full ACID compliance, reliable transactional integrity, and support for complex queries and data types, which are essential for [explain any specific needs of your project].
+11. **Unit testind the Application**:
+To test the API endpoints of the application use below commands
+
+python manage.py test DashboardApp
+python manage.py test AccountApp
+
+13. **Why PostgreSQL?**
+I chose PostgreSQL for this project primarily because it offers robust support for complex queries and relationships between data entities, which is essential for managing the interconnected data structure of the item dashboard. Its ACID compliance ensures reliable transaction processing, crucial for maintaining data integrity. Additionally, PostgreSQL's scalability and strong community support make it a reliable choice for both development and production environments, aligning well with the project's requirements for a secure, efficient, and scalable database solution.
+
+14. **Why React Frontend Framework?**
+I chose React for the front-end development of this project because of its flexibility, efficiency, and strong community support. React's component-based architecture allows for the development of reusable UI elements, making the codebase more manageable and scalable as the project grows. Its virtual DOM implementation ensures high performance and a smooth user experience, even for complex applications with dynamic data. Additionally, React's extensive ecosystem, including tools and libraries, facilitates rapid development and feature implementation. The widespread adoption of React also means there's a wealth of resources, tutorials, and community support available, which is invaluable for solving development challenges and staying up to date with best practices.
+   
+15. **Why Github Pages to deploy Frontend?**
+I opted for GitHub Pages to deploy the React front-end of this project for several reasons. Firstly, it offers a straightforward and cost-effective solution for hosting static websites, which is ideal for a React application. GitHub Pages integrates seamlessly with the existing GitHub repository, simplifying the deployment process and making updates easy to manage directly from the version control system. This choice also leverages GitHub's robust infrastructure, ensuring high availability and reliability for the deployed application. Additionally, using GitHub Pages aligns with the project's need for a quick setup and minimal configuration, allowing me to focus more on development while still ensuring a professional, accessible presentation of the front-end.
+
+16. **Why JWT for Authentication?**
+JWT tokens are praised for their efficiency and security in web development. They are compact, allowing for fast transmission, and self-contained, carrying all necessary user data. This makes authentication processes efficient, as it reduces the need to query the database repeatedly. Additionally, their stateless nature simplifies scaling by eliminating server-side session storage. Security is another key advantage; JWTs can be digitally signed, ensuring data integrity and authenticating that the tokens are from a legitimate source. This combination of features makes JWT an excellent choice for secure, scalable, and efficient web application authentication.
+
+17. **Frontend URL?**
+    
+[Frontend Website]([https://editor.swagger.io/](https://rukhsarrkhan.github.io/kaizntree_be_challenge_fe/)https://rukhsarrkhan.github.io/kaizntree_be_challenge_fe/)
+
+18. 
