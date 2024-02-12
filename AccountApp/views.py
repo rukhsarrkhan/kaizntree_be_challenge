@@ -33,7 +33,7 @@ class PasswordResetRequestView(GenericAPIView):
     def post(self, request):
         reset_serializer = PasswordResetRequestViewSerializer(data=request.data, context={'request': request})
         reset_serializer.is_valid(raise_exception=True)
-        return JsonResponse("A link has been sent to you to reset your password", status=200, safe=False)
+        return JsonResponse({"message": "A link has been sent to you to reset your password"}, status=200, safe=False)
 
 class PasswordResetConfirm(GenericAPIView):
 
@@ -42,16 +42,16 @@ class PasswordResetConfirm(GenericAPIView):
             user_id = smart_str(urlsafe_base64_decode(uidb64))
             user = User.objects.get(id=user_id)
             if not PasswordResetTokenGenerator().check_token(user, token):
-                return JsonResponse("Token is invalid or has expired", status=401)
+                return JsonResponse({"message": "Token is invalid or has expired"}, status=401)
             return Response({'success': True, 'message': "Credentials are valid", 'uidb64': uidb64, 'token':token, 'status':200})
         except DjangoUnicodeDecodeError:
-            return JsonResponse("Token is invalid or has expired", status=401)
+            return JsonResponse({"message": "Token is invalid or has expired"}, status=401, safe = False)
 
 class SetNewPassword(GenericAPIView):
     def patch(self, request):
         new_password_serializer = SetNewPasswordSerializer(data=request.data)
         new_password_serializer.is_valid(raise_exception=True)
-        return JsonResponse("Password Reset Successful", status=200, safe = False)
+        return JsonResponse({"message": "Password Reset Successful"}, status=200, safe = False)
 
 @permission_classes([IsAuthenticated])
 class LogoutUserView(GenericAPIView):

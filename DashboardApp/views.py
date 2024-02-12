@@ -30,14 +30,6 @@ def dashboardApi(request,id=None):
             tag_ids = tags.split(',')
             query_set = query_set.filter(tags__id__in=tag_ids).distinct()
 
-        # if id: 
-        #     item = get_object_or_404(query_set, id=id)
-        #     items_serializer = ItemSerializer(item)
-        # else :
-        #     items_serializer=ItemSerializer(query_set,many=True)
-
-        # return JsonResponse(items_serializer.data,safe=False, status=200)
-
         if id:
             item = get_object_or_404(query_set, id=id)
             items_serializer = ItemSerializer(item)
