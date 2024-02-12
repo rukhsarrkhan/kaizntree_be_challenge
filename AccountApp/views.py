@@ -59,6 +59,6 @@ class LogoutUserView(GenericAPIView):
         logout_serializer = LogoutUserViewSerializer(data=request.data)
         logout_serializer.is_valid(raise_exception=True)
         logout_serializer.save()
-        return Response(status=204)
+        return Response({'success': True, "message": "Logout Successful", "status":204})
 
 
