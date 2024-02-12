@@ -134,3 +134,8 @@ JWT tokens are valued for its compact, self-contained format that speeds up auth
     
 [Frontend Website](https://rukhsarrkhan.github.io/kaizntree_be_challenge_fe/)
 
+19. **On Logout**
+
+Refresh tokens are invalidated, so that no new access_token can be made with it but access token invalidates at its expiry time
+
+In the context of using Django REST Framework with the djangorestframework-simplejwt package for JWT (JSON Web Token) authentication, access tokens are typically short-lived and are not stored server-side. Therefore, we cannot invalidate an access token in the same way we can blacklist a refresh token, which can be stored and checked against a list of blacklisted tokens.

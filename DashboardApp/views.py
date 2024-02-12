@@ -25,7 +25,7 @@ def dashboardApi(request,id=None):
         if category:
             query_set = query_set.filter(category=category)
 
-        tags = request.query_params.get('tag')
+        tags = request.query_params.get('tags')
         if tags:
             tag_ids = tags.split(',')
             query_set = query_set.filter(tags__id__in=tag_ids).distinct()

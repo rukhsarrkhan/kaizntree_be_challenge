@@ -74,7 +74,6 @@ class PasswordResetRequestViewSerializer(serializers.ModelSerializer):
             uidb64 = urlsafe_base64_encode(smart_bytes(user.id))
             token = PasswordResetTokenGenerator().make_token(user)
             request= self.context.get('request')
-            # site_domain = get_current_site(request).domain
             # site_domain = "localhost:3000/#"
             site_domain = "rukhsarrkhan.github.io/kaizntree_be_challenge_fe/#"
             relative_link = reverse('password-reset-confirm', kwargs={'uidb64':uidb64, 'token':token})
@@ -108,14 +107,15 @@ class SetNewPasswordSerializer(serializers.ModelSerializer):
             user_id = force_str(urlsafe_base64_decode(uidb64))
             user = User.objects.get(id=user_id)
             if not PasswordResetTokenGenerator().check_token(user, token):
-                raise AuthenticationFailed("Resest link is invalid or expired",401)
+                raise AuthenticationFailed("Reset link is invalid or expired",401)
             if password != confirm_password:
                 raise AuthenticationFailed("Passwords do not match")
             user.set_password(password)
             user.save()
             return user
         except Exception as e:
-            raise AuthenticationFailed("Link is invalid or expired",401)
+            print(e)
+            raise AuthenticationFailed(e,401)
 
 class LogoutUserViewSerializer(serializers.Serializer):
     refresh_token = serializers.CharField()
