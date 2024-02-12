@@ -56,7 +56,7 @@ class ItemAPITests(APITestCase):
         self.assertIn('previous', response_data)
         self.assertIn('results', response_data)
         
-        self.assertEqual(len(response.data['results']), 1)
+        self.assertEqual(len(response_data['results']), 1)
 
     def test_create_item(self):
         data = {
