@@ -3,11 +3,6 @@
 ## Description
 
 This project is a web application designed to manage inventory items. The project utilizes Django REST Framework for the backend with a PostgreSQL database, and includes Swagger for API documentation and Figma for frontend design mockups. The project is done as part of kaizntree backend challenge.
-
-## Features : TBD
-
-- Inventory Management
-
   
 ## Installation
 
