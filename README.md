@@ -97,6 +97,8 @@ In the same file kaizntree_be_challenge-main/kaizntree_be_challenge/settings.py 
 
 ![Alt text](CORS.png?raw=true "CORS")
 
+The environment variables like SECRET_KEY, DEBUG..etc are provided in `.env` file.
+
 To run the application, navigate to the project directory in your terminal and execute:
 
    ```

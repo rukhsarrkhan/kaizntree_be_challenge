@@ -332,6 +332,104 @@ paths:
         '401':
           description: Invalid credentials or email not verified.
 
+  /api/v1/auth/password-reset/:
+    post:
+      summary: Request password reset
+      description: Sends a password reset link to the user's email.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Password reset link sent successfully.
+        '400':
+          description: Error sending password reset link.
+
+  /api/v1/auth/password-reset-confirm/{uidb64}/{token}/:
+    post:
+      summary: Confirm password reset
+      description: Confirms the password reset using the token sent to the user's email.
+      parameters:
+        - in: path
+          name: uidb64
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Password reset successfully.
+        '400':
+          description: Invalid token or password reset failed.
+
+  /api/v1/auth/set-new-password/:
+    post:
+      summary: Set new password
+      description: Sets a new password for the user.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - new_password
+                - confirm_password
+                - uidb64
+                - token
+              properties:
+                new_password:
+                  type: string
+                  format: password
+                  description: The new password for the user.
+                confirm_password:
+                  type: string
+                  format: password
+                  description: Confirmation of the new password.
+                uidb64:
+                  type: string
+                  description: The base64 encoded ID of the user.
+                token:
+                  type: string
+                  description: The password reset token sent to the user.
+      responses:
+        '200':
+          description: New password set successfully.
+        '400':
+          description: Error setting new password.
+
+  /api/v1/auth/logout/:
+    post:
+      summary: Logout a user
+      description: Logs out the current user by blacklisting their refresh token.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        '204':
+          description: User logged out successfully.
+        '400':
+          description: Error logging out the user.
+
 components:
   schemas:
     Item:
