@@ -1,4 +1,6 @@
-
+from django.core.mail import EmailMessage
+from .models import User
+from django.conf import settings 
 
 def send_normal_email(data):
     email=EmailMessage(

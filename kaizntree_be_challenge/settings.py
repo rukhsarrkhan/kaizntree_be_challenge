@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3000","https://rukhsarrkhan.github.io"
 ]
 
 MIDDLEWARE = [
@@ -157,3 +157,11 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '6399f7829b2f20'
+EMAIL_HOST_PASSWORD = '28ba274c1d25c8'
+DEFAULT_FROM_EMAIL = 'rukhsarkhan4198@gmail.com'
+EMAIL_PORT = '2525'
+EMAIL_USE_TLS=True

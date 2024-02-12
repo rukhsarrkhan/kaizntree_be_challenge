@@ -26,26 +26,30 @@ This should output the version of Python installed.
 
 Set PostgreSQL Password: Set up a password for the default PostgreSQL user (usually postgres).
 
-4. **Install Django**:
+Note: Select the "pgAgent for PostgreSQL" during PostgreSQL installation as shown in the image below:
+
+![Alt text](pgAgent.png?raw=true "PgAgent")
+
+4. **Django Installation**:
 
    ```
    pip install django
    ```
-5. **Install Django REST Framework**:
+5. **Django REST Framework Installation**:
 
   ```
    pip install djangorestframework
   ```
 ***Note: Make sure that you are using the same Python interpreter and virtual environment that you are using for your Django project.***
   
-6. **Install additional packages project needs. For example**:
+6. **Additional Packages Installation that project needs**:
 The django-cors-headers package is for handling Cross-Origin Resource Sharing (CORS), and psycopg2-binary is a PostgreSQL adapter for Python.
 
    ```
    pip install django-cors-headers
    pip install psycopg2-binary
    ```
-7. **Installing required python packages**
+7. **Required Python Packages Installation**
 
 ***Navigate to the project directory within the terminal and proceed***
 
@@ -68,18 +72,30 @@ You should see 'django-environ' and 'rest_framework_simplejwt' in the output. If
 `source venv/bin/activate` # for Linux or Mac and `venv\Scripts\activate` # for Windows
 Replace ‘venv’ with the name of your virtual environment folder.
 
-8. **Setup the Migrations using given commands**:
+8. **Creating mytestdb using PostgreSQL**:
+
+   Note: You will have to launch pgAdmin4 application and create database named `mytestdb` in Databases as shown in image below:
+   
+   ![Alt text](mytestdb.png?raw=true "mytestdb")
+
+9. **Setup the Migrations using given commands**:
 
    ```
    python manage.py makemigrations DashboardApp
    python manage.py migrate DashboardApp
-   python manage.py migrate AccountApp
    python manage.py makemigrations AccountApp
+   python manage.py migrate AccountApp
    python manage.py migrate
    ```
-9. **Running the Application**:
-Note: In file kaizntree_be_challenge-main/kaizntree_be_challenge/settings.py change the "PASSWORD" field value on line 97 to your local Postgre SQL password set during PostgreSQL installation as shown in the image below
+10. **Running the Application**:
+
+Note: In file kaizntree_be_challenge-main/kaizntree_be_challenge/settings.py change the "PASSWORD" field value on line 99 to your local Postgre SQL password set during PostgreSQL installation as shown in the image below
+
 ![Alt text](PasswordRequirement.png?raw=true "PasswordRequirement")
+
+In the same file kaizntree_be_challenge-main/kaizntree_be_challenge/settings.py add your `UI domain` value as a string in the `CORS_ALLOWED_ORIGINS` field section on line 55-56 as shown in the image below
+
+![Alt text](CORS.png?raw=true "CORS")
 
 To run the application, navigate to the project directory in your terminal and execute:
 
@@ -93,11 +109,9 @@ API Documentation
 The API endpoints are documented using Swagger. You can access the interactive endpoints documentation for the project at: [Swagger Editor Website](https://editor.swagger.io/)
 You will have to copy the entire contents of openapi.yaml file from the project directory and paste it in Swagger editor to get interactive API documentation
 
-Design Mockups : TBD
-
 The frontend design mockups are available on Figma at the following link:
 
-Figma Design Link : TBD
+[Figma Design Link](https://www.figma.com/file/fjzPIi67Jk7WgW3gjeA0Tk/Kaizntree-Full-Stack-Interview-UI-Template?type=whiteboard&node-id=0-1&t=T12L5wu2aGemt1Lk-0)
 
 Why PostgreSQL?
 PostgreSQL was chosen as the database for this project due to its robustness, scalability, and strong community support. It provides advanced features such as full ACID compliance, reliable transactional integrity, and support for complex queries and data types, which are essential for [explain any specific needs of your project].
